@@ -1,34 +1,53 @@
+# النظام
 .DS_Store
+Thumbs.db
+Icon?
 
+# سجلات وتخزين
 application/cache/*
 !application/cache/index.html
-
 application/logs/*
 !application/logs/index.html
+application/sessions/*
+!application/sessions/index.html
 
-!application/*/.htaccess
+# ملفات التحميل
+uploads/*
+!uploads/index.html
 
+# ملفات النسخ الاحتياطي
+backups/*
+
+# بيئة التطوير
+*.log
+custom_environment.php
+
+# مكتبات أو إضافات مخصصة
+application/third_party/*
+!application/third_party/index.html
+
+# Composer
 composer.lock
-.env
-
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
 vendor/
 
-# IDE Files
-#-------------------------
+# ملفات الإعدادات الحساسة
+application/config/config.php
+application/config/database.php
+
+# ملفات بيئة العمل
+.env
+
+# ملفات IDE
 /nbproject/
 .idea/*
 
-## Sublime Text cache files
+# Sublime Text cache files
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+# الاختبارات
 /tests/tests/
 /tests/results/
-application/.dccache
-uploads/avatars/
