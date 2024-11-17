@@ -3392,10 +3392,10 @@ WHERE Id = '" . $sessiondata . "' ORDER BY `Id` DESC")->result_array();
                 $this->load->library('email');
                 $config = array(
                     'protocol' => 'smtp',
-                    'smtp_host' => 'mail.track.qlickhealth.com',
+                    'smtp_host' => 'smtp.hostinger.com',
                     'smtp_port' => 465,
-                    'smtp_user' => 'no_reply@track.qlickhealth.com',
-                    'smtp_pass' => 'Bd}{kKW]eTfH',
+                    'smtp_user' => 'jobs@qlicksystems.com',
+                    'smtp_pass' => 'O?#f:Kc19#z',
                     'smtp_crypto' => 'ssl',
                     'mailtype' => 'html',
                     'charset' => 'iso-8859-1'
@@ -3404,7 +3404,7 @@ WHERE Id = '" . $sessiondata . "' ORDER BY `Id` DESC")->result_array();
                 $page = $pageName[(sizeof($pageName)) - 2] . " / " . $pageName[(sizeof($pageName)) - 1];
                 //$link = base_url()."AR/users/Updatepassword?email='".$email."'&hash='".$password."'&as='".$loged_as."'";
                 $messg = '<center>
-				  <img src="https://qlickhealth.com/admin/assets/img/qlick-health-logo.png" >
+				  <img src="<?= base_url('assets/images/defaulticon.png'); ?>" alt="Wellbeing Scales" class="logo logo-dark">
 				  <h2> Hi there <h2> 
 				  <h3> we have a feedBack About This Page ' . $page . '</h3>
 				  <h3> the Time Of sending FeedBack : ' . date('Y-m-d H:m:s') . ' </h3>
@@ -3413,7 +3413,7 @@ WHERE Id = '" . $sessiondata . "' ORDER BY `Id` DESC")->result_array();
 				  </center>';
                 $this->email->initialize($config);
                 $this->email->set_newline('\r\n');
-                $this->email->from('sender@track.qlickhealth.com', 'track.qlickhealth.com');
+                $this->email->from('jobs@qlicksystems.com', 'qlicksystems.com');
                 $this->email->to("beclose2022@gmail.com");
                 $this->email->bcc("beclose2030@gmail.com");
                 $this->email->subject(' New FeedBack in qlicksystems From : ' . $ip);

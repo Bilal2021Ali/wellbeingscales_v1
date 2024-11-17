@@ -1203,17 +1203,17 @@ AND Created = '" . $today . "' AND UserType = '" . $type . "' ORDER BY `Id` DESC
                             $this->load->library('email');
                             $config = array(
                                 'protocol' => 'smtp',
-                                'smtp_host' => 'mail.track.qlickhealth.com',
+                                'smtp_host' => 'smtp.hostinger.com',
                                 'smtp_port' => 465,
-                                'smtp_user' => 'no_reply@track.qlickhealth.com',
-                                'smtp_pass' => 'Bd}{kKW]eTfH',
+                                'smtp_user' => 'jobs@qlicksystems.com',
+                                'smtp_pass' => 'O?#f:Kc19#z',
                                 'smtp_crypto' => 'ssl',
                                 'mailtype'  => 'html',
                                 'charset'   => 'iso-8859-1'
                             );
                             //$link = base_url()."EN/Users/Updatepassword?email='".$email."'&hash='".$password."'&as='".$loged_as."'";
                             $messg = '<center>
-                            <img src="https://qlickhealth.com/admin/assets/img/qlick-health-logo.png" >
+                            <img src="<?= base_url('assets/images/defaulticon.png'); ?>" alt="Wellbeing Scales" class="logo logo-dark">
                             <h2> Hi there <h2> 
                             <h3>Your User name is : ' . $National_Id . ' </h3>
                             <h3>Your password is : ' . $password . ' </h3>
@@ -1221,7 +1221,7 @@ AND Created = '" . $today . "' AND UserType = '" . $type . "' ORDER BY `Id` DESC
                             </center>';
                             $this->email->initialize($config);
                             $this->email->set_newline('\r\n');
-                            $this->email->from('sender@track.qlickhealth.com', 'track.qlickhealth.com');
+                            $this->email->from('jobs@qlicksystems.com', 'qlicksystems.com');
                             $this->email->bcc('emails@qlicksystems.com');
                             $this->email->to($Email);
                             $this->email->subject(' department User - You User Name And Password ');
@@ -1322,24 +1322,24 @@ AND Created = '" . $today . "' AND UserType = '" . $type . "' ORDER BY `Id` DESC
                             $this->load->library('email');
                             $config = array(
                                 'protocol' => 'smtp',
-                                'smtp_host' => 'mail.track.qlickhealth.com',
+                                'smtp_host' => 'smtp.hostinger.com',
                                 'smtp_port' => 465,
-                                'smtp_user' => 'no_reply@track.qlickhealth.com',
-                                'smtp_pass' => 'Bd}{kKW]eTfH',
+                                'smtp_user' => 'jobs@qlicksystems.com',
+                                'smtp_pass' => 'O?#f:Kc19#z',
                                 'smtp_crypto' => 'ssl',
                                 'mailtype'  => 'html',
                                 'charset'   => 'iso-8859-1'
                             );
                             $messg = '<center>
-          <img src="https://qlickhealth.com/admin/assets/img/qlick-health-logo.png" >
+          <img src="<?= base_url('assets/images/defaulticon.png'); ?>" alt="Wellbeing Scales" class="logo logo-dark">
           <h2> Hi there <h2> 
           <h3>Your User name is : ' . $National_Id . ' </h3>
           <h3>Your password is : ' . $password . ' </h3>
-          <a href="https://track.qlickhealth.com" style="width:140px;padding:10px;background:#5b73e8;border-radius:5px;display: block;color: #fff;margin: auto;text-align: center;text-decoration: navajowhite;">Go To LogIn Page !</a>
+          <a href="https://wellbeinggo.com" style="width:140px;padding:10px;background:#5b73e8;border-radius:5px;display: block;color: #fff;margin: auto;text-align: center;text-decoration: navajowhite;">Go To LogIn Page !</a>
           </center>';
                             $this->email->initialize($config);
                             $this->email->set_newline('\r\n');
-                            $this->email->from('sender@track.qlickhealth.com', 'track.qlickhealth.com');
+                            $this->email->from('jobs@qlicksystems.com', 'qlicksystems.com');
                             $this->email->to($Email);
                             $this->email->subject(' You User Name And Password ');
                             $this->email->message($messg);

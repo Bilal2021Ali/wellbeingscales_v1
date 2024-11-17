@@ -697,17 +697,17 @@ class Users extends CI_Controller
         $this->load->library('email');
         $config = array(
             'protocol' => 'smtp',
-            'smtp_host' => 'mail.track.qlickhealth.com',
+            'smtp_host' => 'smtp.hostinger.com',
             'smtp_port' => 465,
-            'smtp_user' => 'no_reply@track.qlickhealth.com',
-            'smtp_pass' => 'Bd}{kKW]eTfH',
+            'smtp_user' => 'jobs@qlicksystems.com',
+            'smtp_pass' => 'O?#f:Kc19#z',
             'smtp_crypto' => 'ssl',
             'mailtype' => 'html',
             'charset' => 'iso-8859-1'
         );
         $messg = '';
         $messg .= '<center>';
-        $messg .= ' <img src="https://qlickhealth.com/admin/assets/img/qlick-health-logo.png" >';
+        $messg .= ' <img src="' . base_url('assets/images/defaulticon.png') . '" alt="Wellbeing Scales" class="logo logo-dark">';
         $messg .= '<p>Dear user,</p>';
         $messg .= '<p>Please click on the following link to reset your password.</p>';
         $messg .= '<p><a style="width:140px;padding:10px;background:#5b73e8;border-radius:5px;display: block;color: #fff;margin: auto;text-align: center;text-decoration: navajowhite;" 
@@ -724,7 +724,7 @@ class Users extends CI_Controller
 
         $this->email->initialize($config);
         $this->email->set_newline('\r\n');
-        $this->email->from('sender@track.qlickhealth.com', 'track.qlickhealth.com');
+        $this->email->from('jobs@qlicksystems.com', 'qlicksystems.com');
         $this->email->to($email);
         $this->email->subject(' You User Name And Password ');
         $this->email->message($messg);

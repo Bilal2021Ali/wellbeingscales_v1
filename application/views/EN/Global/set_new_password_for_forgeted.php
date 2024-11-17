@@ -1,59 +1,148 @@
-<!doctype html>
-<html>
 <head>
-<meta charset="utf-8">
-<title>Update password</title>
-<link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url() ?>assets/css/icons.min.css" id="app-style" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url() ?>assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
-<link href="<?php echo base_url() ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
-</head>
-<style>
-.seePassword {
-	font-size: 22px;
-	float: right;
-	margin-top: -36px;
-	margin-right: 5px;
-	z-index: 1000000000;
-	position: relative;
-	cursor: pointer;
-}
+    <meta charset="UTF-8">
+    <title>Choose Country Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('<?= base_url("assets/images/bg-01.jpg"); ?>') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Almarai', sans-serif;
+        }
 
-.loding {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: grid;
-    align-items: center;
-    align-content: center;
-    background: #fff;
-    z-index: 1000000000000;
-    top: 0px;
-}
+        .container {
+            /* إزالة خاصية التوسيط العمودي */
+            margin-top: 20px;
+            /* إضافة مسافة من الأعلى (اختياري) */
+        }
 
-.loding .spinner-border {
-	position: absolute;
-    left: 43%;
-    font-size: 19px;
-}
-	
-	
-</style>
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 10px;
+
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-body img {
+            width: auto;
+            height: auto;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-body img:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+
+        .text-muted {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 767px) {
+            .card {
+                width: 90%;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            /* إضافة بعض المسافة من الأسفل */
+        }
+
+        .logo {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 <body class="authentication-bg">
 <div class="account-pages pt-sm-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8 col-lg-6 col-xl-5">
-        <div> <a href="/" class="mb-5 d-block auth-logo"> <img src="assets/images/logo-dark.png" alt="" height="22" class="logo logo-dark"> <img src="assets/images/logo-light.png" alt="" height="22" class="logo logo-light"> </a>
+        
           <div class="card">
             <div class="card-body p-4">
+			
               <div class="loding">
                 <div class="spinner-border text-warning m-1" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>
               </div>
               <div class="text-center mt-2">
-<img src="<?php echo base_url(); ?>assets/images/qlick-health-logo.png" alt="" width="100%" class="logo logo-dark">
+<img src="<?= base_url('assets/images/defaulticon.png'); ?>" alt="Wellbeing Scales" class="logo logo-dark">
                 <h5 class="text-primary">Reset Password</h5>
                 <p class="text-muted"> Enter your new password </p>
               </div>
@@ -82,9 +171,16 @@
                   </div>
                 </form>
               </div>
+			  <div class="text-center mt-2">
+                            <hr>
+                            <p>Copyright © <span id="currentYear"></span> Wellbeing Scales. All rights reserved.</p>
+                        </div>
             </div>
+			
           </div>
+		  
         </div>
+		
       </div>
     </div>
     <!-- end row --> 

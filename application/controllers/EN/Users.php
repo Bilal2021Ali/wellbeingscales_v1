@@ -668,72 +668,81 @@ class Users extends CI_Controller
         $this->load->view('EN/inc/header', $data);
     }
 
-    public function checkemail()
-    {
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules('username', 'username', 'trim|required');
-        if ($this->form_validation->run()) {
-            $Username = $this->input->post('username');
-            $infos = $this->db->where("Username", $Username)->get('v_login')->result_array();
-            if (!empty($infos)) {
-                $Type = $infos[0]['Type'];
-                $login_id = $infos[0]['Id']; ?>
-                <script>
-                    Swal.fire({
-                        icon: "warning",
-                        title: 'Please Enter Your Email',
-                        input: 'email',
-                        confirmButtonText: 'Submit',
-                        showLoaderOnConfirm: true,
-                        confirmButtonColor: "#5b8ce8",
-                        preConfirm: function preConfirm(email) {
+ public function checkemail()
+{
+    $this->load->library('form_validation');
+    $this->form_validation->set_rules('username', 'username', 'trim|required');
+    if ($this->form_validation->run()) {
+        $Username = $this->input->post('username');
+        $infos = $this->db->where("Username", $Username)->get('v_login')->result_array();
+        if (!empty($infos)) {
+            $Type = $infos[0]['Type'];
+            $login_id = $infos[0]['Id']; ?>
+            <script>
+                Swal.fire({
+                    icon: "warning",
+                    title: 'Please Enter Your Email',
+                    input: 'email',
+                    confirmButtonText: 'Submit',
+                    showLoaderOnConfirm: true,
+                    confirmButtonColor: "#5b8ce8",
+                    preConfirm: function preConfirm(email) {
+                        // تأكيد الإدخال
+                        if (!email) {
+                            Swal.showValidationMessage('Please enter a valid email address');
+                        } else {
                             $('#EmailCheck').html('<h3 class="text-center w-100">Please wait...</h3>');
                             $.ajax({
                                 type: 'POST',
-                                url: '<?= base_url(); ?>EN/Users/SendEmail',
+                                url: '<?= base_url(); ?>EN/Users/SendEmail', // تأكد من الرابط الصحيح
                                 data: {
-                                    email: email,
-                                    username: "<?= $Username; ?>",
-                                    type: "<?= $Type; ?>",
-                                    login_id: <?= $login_id   ?>
+                                    email: email,  // ارسال البريد الإلكتروني الذي تم إدخاله
+                                    username: "<?= $Username; ?>",  // ارسال اسم المستخدم
+                                    type: "<?= $Type; ?>",  // ارسال نوع المستخدم
+                                    login_id: <?= $login_id; ?>  // ارسال ID الخاص بالمستخدم
                                 },
                                 success: function (data) {
                                     $('#EmailCheck').html('<h3 class="text-center w-100">Close this page and check your email Please !</h3>');
                                     Swal.fire(
-                                        'success',
+                                        'Success',
                                         data,
                                         'success'
-                                    )
+                                    );
                                 },
-                                ajaxError: function () {
+                                error: function () {
                                     Swal.fire(
-                                        'error',
-                                        'oops!! we have a error',
+                                        'Error',
+                                        'Oops! Something went wrong. Please try again.',
                                         'error'
-                                    )
+                                    );
                                 }
                             });
-                        },
-                        allowOutsideClick: false
-                    });
-                </script>
-                <?php
-            } else {
-                ?>
-                <script>
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: "We can't find this user name !!",
-                        footer: '<a href>Why do I have this issue?</a>'
-                    });
-                </script>
-                <?php
-            }
+                        }
+                    },
+                    allowOutsideClick: false
+                });
+            </script>
+            <?php
         } else {
-            echo validation_errors();
+            ?>
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "We can't find this username!",
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                });
+            </script>
+            <?php
         }
-    } //end main function
+    } else {
+        echo validation_errors();
+    }
+} //end main function
+
+
+
+
 
     private function isssetindb_byusername($table, $Username)
     {
@@ -741,66 +750,91 @@ class Users extends CI_Controller
         return ($geted);
     }
 
-    private function sendResetEmail($email, $username, $type, $login_id)
-    {
-        $expFormat = mktime(
-            date("H"),
-            date("i"),
-            date("s"),
-            date("m"),
-            date("d") + 1,
-            date("Y")
-        );
-        $expDate = date("Y-m-d H:i:s", $expFormat);
-        $key = md5(2418 * 2 . "$email");
-        $addKey = substr(md5(uniqid(rand(), 1)), 3, 10);
-        $this->load->library('Encrypt_url');
-        //$id_link = $this->base64_url_encode($login_id);
-        $id_link = $this->encrypt_url->safe_b64encode($login_id);
-        // Insert Temp Table
-        $this->db->query("INSERT INTO `password_reset_tbl` (`login_id`, `key`, `typeofUser`, `expDate`)
+ private function sendResetEmail($email, $username, $type, $login_id)
+{
+    // تحديد تاريخ انتهاء الرابط
+    $expFormat = mktime(
+        date("H"),
+        date("i"),
+        date("s"),
+        date("m"),
+        date("d") + 1,
+        date("Y")
+    );
+    $expDate = date("Y-m-d H:i:s", $expFormat);
+
+    // إنشاء مفتاح أمان
+    $key = md5(2418 * 2 . "$email");
+    $addKey = substr(md5(uniqid(rand(), 1)), 3, 10);
+
+    // تشفير الرابط
+    $this->load->library('Encrypt_url');
+    $id_link = $this->encrypt_url->safe_b64encode($login_id);
+
+    // إدخال البيانات في جدول reset
+    $this->db->query("INSERT INTO `password_reset_tbl` (`login_id`, `key`, `typeofUser`, `expDate`)
         VALUES ('" . $login_id . "', '" . $key . "', '" . $type . "', '" . $expDate . "');");
-        $this->load->library('email');
-        $config = array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'mail.track.qlickhealth.com',
-            'smtp_port' => 465,
-            'smtp_user' => 'no_reply@track.qlickhealth.com',
-            'smtp_pass' => 'Bd}{kKW]eTfH',
-            'smtp_crypto' => 'ssl',
-            'mailtype' => 'html',
-            'charset' => 'iso-8859-1'
-        );
-        $messg = '';
-        $messg .= '<center>';
-        $messg .= ' <img src="https://qlickhealth.com/admin/assets/img/qlick-health-logo.png" >';
-        $messg .= '<p>Dear user,</p>';
-        $messg .= '<p>Please click on the following link to reset your password.</p>';
-        $messg .= '<p><a style="width:140px;padding:10px;background:#5b73e8;border-radius:5px;display: block;color: #fff;margin: auto;text-align: center;text-decoration: navajowhite;" 
-        href="' . base_url() . 'EN/Users/resetPassword/' . $key . '/' . $id_link . '/reset"
-        target="_blank">Reset my password</a></p>';
-        $messg .= '<p>
-        The link will expire after 1 day for security reason.</p>';
-        $messg .= '<p>If you did not request this forgotten password email, no action 
-        is needed, your password will not be reset. However, you may want to log into 
-        your account and change your security password as someone may have guessed it.</p>';
-        $messg .= '<p>Thanks,</p>';
-        $messg .= '<p>qlicksystems</p>';
-        $messg .= '</center>';
 
-        $this->email->initialize($config);
-        $this->email->set_newline('\r\n');
-        $this->email->from('sender@track.qlickhealth.com', 'track.qlickhealth.com');
-        $this->email->to($email);
-        $this->email->subject('qlicksystems - Reset password ');
-        $this->email->message($messg);
+    // تحميل مكتبة البريد الإلكتروني
+    $this->load->library('email');
+    $config = array(
+        'protocol' => 'smtp',
+        'smtp_host' => 'smtp.hostinger.com',
+        'smtp_port' => 465,
+        'smtp_user' => 'jobs@qlicksystems.com',
+        'smtp_pass' => 'O?#f:Kc19#z',
+        'smtp_crypto' => 'ssl',
+        'mailtype' => 'html',
+        'charset' => 'utf-8',
+        'newline' => "\r\n"
+    );
 
-        if (!$this->email->send()) {
-            echo ' We have a problem sending the email right now !!  ';
-        } else {
-            echo 'The email has been sent';
-        }
+    // إعداد الرسالة
+    $messg = '<center>';
+    $messg .= '<img src="' . base_url('assets/images/defaulticon.png') . '" alt="Wellbeing Scales" class="logo logo-dark">';
+    $messg .= '<p>Dear ' . htmlspecialchars($username) . ',</p>';
+    $messg .= '<p>Please click on the following link to reset your password.</p>';
+    $messg .= '<p><a style="width:140px;padding:10px;background:#5b73e8;border-radius:5px;display: block;color: #fff;margin: auto;text-align: center;text-decoration: none;" 
+        href="' . base_url() . 'EN/Users/resetPassword/' . $key . '/' . $id_link . '/reset" target="_blank">Reset my password</a></p>';
+    $messg .= '<p>The link will expire after 1 day for security reasons.</p>';
+    $messg .= '<p>If you did not request this forgotten password email, <br> no action is needed. Your password will not be reset. However, <br> you may want to log into your account and change your security settings as a precaution.</p>';
+    $messg .= '<p>Thanks,</p>';
+    $messg .= '<p>Wellbeing Scales</p>';
+    $messg .= '</center>';
+
+    // تهيئة مكتبة البريد الإلكتروني
+    $this->email->initialize($config);
+    $this->email->from('jobs@qlicksystems.com', 'Wellbeing Scales');
+    $this->email->to($email);
+    $this->email->subject('Reset password');
+    $this->email->message($messg);
+
+    // إرسال البريد الإلكتروني والتحقق من الأخطاء
+    if (!$this->email->send()) {
+        // عرض تفاصيل الخطأ
+        echo 'We have a problem sending the email right now!<br>';
+        echo $this->email->print_debugger();
+    } else {
+        echo 'The email has been sent successfully.';
     }
+}
+
+
+private function sendPasswordResetEmail($email) {
+    $this->load->library('email', $this->email_config);
+
+    $this->email->from('your-email@example.com', 'Wellbeing Scales');
+    $this->email->to($email);
+    $this->email->subject('Password Reset Request');
+    $this->email->message('Click here to reset your password: [link to reset page]');
+
+    if ($this->email->send()) {
+        echo 'Password reset email sent successfully.';
+    } else {
+        echo 'Ooops! Something went wrong.';
+    }
+}
+
 
     public function SendEmail()
     {

@@ -1,20 +1,17 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Choose Country Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
-
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-
     <style>
         body {
             margin: 0;
@@ -25,10 +22,9 @@
         }
 
         .container {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* لضبط المحتوى بشكل عمودي في منتصف الصفحة */
+            /* إزالة خاصية التوسيط العمودي */
+            margin-top: 20px;
+            /* إضافة مسافة من الأعلى (اختياري) */
         }
 
         .header-title {
@@ -49,7 +45,7 @@
 
         .card-body {
             padding: 10px;
-           
+
             flex-direction: column;
             justify-content: center;
             align-items: center;
@@ -120,19 +116,20 @@
                 padding: 20px;
             }
         }
-		
+
         .logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 30px; /* إضافة بعض المسافة من الأسفل */
+            margin-bottom: 30px;
+            /* إضافة بعض المسافة من الأسفل */
         }
 
         .logo {
             max-width: 100%;
             height: auto;
         }
-    </style> 
+    </style>
 </head>
 
 <body>
@@ -150,19 +147,16 @@
                                     Welcome to Wellbeing Scales
                                 </div>
                             </div>
-
                             <div class="p-2 mt-4">
                                 <form id="loginform">
                                     <div class="form-group">
                                         <label for="username">Username</label>
                                         <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
                                     </div>
-
                                     <div class="form-group">
                                         <label for="userpassword">Password</label>
                                         <input type="password" class="form-control" id="userpassword" placeholder="Password" name="password" required>
                                     </div>
-
                                     <div class="mt-3 text-right">
                                         <button class="btn btn-primary btn-lg btn-block waves-effect waves-light mb-2" type="submit">Login</button>
                                         <div class="float-left">
@@ -174,7 +168,6 @@
                                 </form>
                             </div>
                         </div>
-
                         <div class="text-center mt-2">
                             <hr>
                             <p>Copyright © <span id="currentYear"></span> Wellbeing Scales. All rights reserved.</p>
@@ -184,13 +177,12 @@
             </div>
         </div>
     </div>
-
     <script>
         $("#loginform").on('submit', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('index.php/EN/Users/startlogin'); ?>',
+                url: '<?= base_url('EN/Users/startlogin'); ?>',
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
@@ -207,9 +199,9 @@
                 }
             });
         });
-
         // Set current year for the footer copyright
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
+
 </html>

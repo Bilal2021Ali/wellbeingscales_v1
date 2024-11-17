@@ -61,7 +61,7 @@
                 <div class="col-sm-6">
                     <div class="text-sm-right d-none d-sm-block">
                         Welcome <i class="mdi mdi-heart text-danger"></i>
-                        <a href="https://track.qlickhealth.com/" target="_blank" class="text-reset"><?= $sessiondata['username']; ?></a>
+                        <a href="https://wellbeinggo.com/" target="_blank" class="text-reset"><?= $sessiondata['username']; ?></a>
                     </div>
                 </div>
             </div>
