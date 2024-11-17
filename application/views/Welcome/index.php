@@ -2,133 +2,178 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Choose Language | إختر اللغة</title>
+<title>Choose Country Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-	  
+
+<!-- Bootstrap CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/app.min.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
+
+<!-- Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
 <style>
-.product-box {
-    background: #fff;
-}
-.ar {
-    font-family: 'Almarai', sans-serif;
-}
-.en {
-    font-family: 'Roboto', sans-serif;
-}
-.mapouter {
-    position: relative;
-    text-align: right;
-    height: 100%;
-    width: 100%;
-}
-.gmap_canvas {
-    overflow: hidden;
-    background: none !important;
-    height: 100%;
-    width: 100%;
-}
-.account-pages {
-    padding-top: 50px;
-}
-.mt-5, .my-5 {
-    margin-top: 0px !important;
-}
-.outer {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.55);
-}
-@media (max-width: 767px) {
-  /* styles for mobile devices */
-}						   
-	</style>		
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var viewportWidth = document.documentElement.clientWidth;
-    if (viewportWidth <= 1024) {
-        document.documentElement.style.fontSize = "80%";
-    } else if (viewportWidth <= 1280) {
-        document.documentElement.style.fontSize = "90%";
-    } else {
-        document.documentElement.style.fontSize = "100%";
+    body {
+        margin: 0;
+        padding: 0;
+        background: url('assets/images/bg-01.jpg') no-repeat center center fixed;
+        background-size: cover;
+        font-family: 'Almarai', sans-serif;
+        animation: backgroundMove 30s linear infinite;
     }
-});
-</script>		 
-</head>
-<body class="authentication-bg">
-<div class="mapouter" style="position: absolute; z-index: 0;">
-    <div class="gmap_canvas">
-        <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=qatar&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-    </div>
-</div>
 
-<div class="account-pages my-5  pt-sm-5">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-5">
-        <div class="card">
-          <div class="card-body p-4">
-            <div class="text-center mt-2"> <img class="logo" src="<?php echo base_url(); ?>assets/images/qlick-health-logo.png"> </div>
-            <div class="row">
-              <?php foreach ($links as $link) { ?>
-              <div class="col-lg-6">
-                <div class="product-box" style="padding-bottom: 16px;">
-                  <div class="product-img pt-4 px-4"> <img src="<?= base_url("assets/images/" . $link["img"]); ?>" alt="" class="img-fluid mx-auto d-block"> </div>
-                  <div class="text-center product-content p-4">
-                    <h5 class="mt-3 mb-0"><span class="text-muted mr-2 ar">
-                      <?= $link["title"] ?>
-                      </span></h5>
-                    <ul class="list-inline mb-0 text-muted product-color">
-                      <a href="<?= base_url("" . $link["link"] . "/Users"); ?>" class="btn btn-primary btn-rounded waves-effect waves-light">
-                      <?= $link["action"] ?>
-                      </a>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              <?php } ?>
-            </div>
-            <div class="card-body p-4">
-              <p class="text-muted">Thank you for choosing <span style="color: #0eacd8; font-weight: bold;">QlickHealth</span>. We are confident that you will find our platform an essential tool for managing your business and wellness.</p>
-			  <p class="text-muted">Your data is safe with us. We will never share or sell your personal information to third parties. <br><a href="<?=base_url('assets/policy/privacy-policy.html')?>"><span style="color: #0eacd8; font-weight: bold;">Privacy Policy Statement</span></a><br><a href="<?=base_url('/testtrack/EN/Users')?>"><span style="color: #0eacd8; font-weight: bold;">Development Server</span></a>.</p>
-			  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<script src="<?= base_url() ?>/assets/js/jquery-3.3.1.min.js"></script>
-
-<script>
-	<script>
-    function checkCookie() {
-        var lang = getCookie("lang");
-        if (lang) {
-            if (lang == "EN") {
-                window.stop();
-                goToEnglish();
-            } else if (lang == "AR") {
-                window.stop();
-                goToArabic();
-            }
+    @keyframes backgroundMove {
+        0% {
+            background-position: 0% center;
+        }
+        100% {
+            background-position: 100% center;
         }
     }
-    checkCookie();
+
+    .container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .icon-box {
+        text-align: center;
+    }
+
+    .icon-box img {
+        width: 100px;
+        height: auto;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+
+    .icon-box img:hover {
+        transform: scale(1.2);
+    }
+
+    .icon-box a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .privacy-policy {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .privacy-policy a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .footer {
+        margin-top: 30px;
+        text-align: center;
+        color: #fff;
+        font-size: 1rem;
+    }
+
+    .footer-links {
+        margin-top: 10px;
+        font-size: 0.9rem;
+    }
+
+    .footer-links a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-weight: bold;
+    }
+
+    .footer-links a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- عنوان الصفحة -->
+    <div class="header-title">
+        Welcome to Wellbeing Scales
+    </div>
+
+    <div class="row">
+    <!-- الرابط الأول: السعودية -->
+    <div class="icon-box">
+        <a href="<?= base_url(); ?>EN/Users">
+            <img src="<?= base_url(); ?>assets/images/saudi-arabia.png" alt="Saudi Arabia">
+            <p>السعودية</p>
+        </a>
+    </div>
+    <!-- الرابط الثاني: قطر -->
+    <div class="icon-box">
+        <a href="<?= base_url(); ?>EN/Users">
+            <img src="<?= base_url(); ?>assets/images/qatar.png" alt="Qatar">
+            <p>قطر</p>
+        </a>
+    </div>
+    <!-- الرابط الثالث: الإمارات -->
+    <div class="icon-box">
+        <a href="<?= base_url(); ?>EN/Users">
+            <img src="<?= base_url(); ?>assets/images/united-arab-emirates.png" alt="UAE">
+            <p>الإمارات</p>
+        </a>
+    </div>
+    <!-- الرابط الرابع - الأردن -->
+    <div class="icon-box">
+        <a href="<?= base_url(); ?>EN/Users">
+            <img src="<?= base_url(); ?>assets/images/jordan.png" alt="Jordan">
+            <p>الأردن</p>
+        </a>
+    </div>
+</div>
+
+
+    <!-- الفوتر مع السنة الديناميكية -->
+    <div class="footer">
+        
+
+        <!-- روابط إضافية في الفوتر -->
+        <div class="footer-links">
+            <a href="terms-and-conditions.html">Terms & Conditions</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="cookies-policy.html">Cookies Policy</a>
+            <a href="copyright-notification.html">Copyrights Notification</a>
+        </div>
+		<br>
+		<p>Copyright © <span id="currentYear"></span> Wellbeing Scales. All rights reserved.</p>
+    </div>
+</div>
+
+<!-- JavaScript لجعل السنة ديناميكية -->
+<script>
+    // جلب السنة الحالية
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
 </script>
-	</body>   
+</body>
 </html>
