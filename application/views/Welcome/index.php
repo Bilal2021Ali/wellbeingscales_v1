@@ -18,7 +18,7 @@
     body {
         margin: 0;
         padding: 0;
-        background: url('assets/images/bg-01.jpg') no-repeat center center fixed;
+        background: url('<?php echo base_url("assets/images/bg-01.jpg"); ?>') no-repeat center center fixed;
         background-size: cover;
         font-family: 'Almarai', sans-serif;
         animation: backgroundMove 30s linear infinite;
@@ -157,7 +157,7 @@
     <!-- الفوتر مع السنة الديناميكية -->
     <div class="footer">
         
-
+<hr>
         <!-- روابط إضافية في الفوتر -->
         <div class="footer-links">
             <a href="terms-and-conditions.html">Terms & Conditions</a>
@@ -165,7 +165,7 @@
             <a href="cookies-policy.html">Cookies Policy</a>
             <a href="copyright-notification.html">Copyrights Notification</a>
         </div>
-		<br>
+		<hr>
 		<p>Copyright © <span id="currentYear"></span> Wellbeing Scales. All rights reserved.</p>
     </div>
 </div>

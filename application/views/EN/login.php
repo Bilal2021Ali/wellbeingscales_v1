@@ -1,153 +1,196 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Choose Language | إختر اللغة</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-	  
-<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="/assets/css/app.min.css">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Choose Country Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-																				
-																				
-																																																											
-			  
-<style>
-.product-box {
-    background: #fff;
-}
-.ar {
-    font-family: 'Almarai', sans-serif;
-}
-.en {
-    font-family: 'Roboto', sans-serif;
-}
-            .mapouter {
-                position: relative;
-                text-align: right;
-                height: 100%;
-                width: 100%;
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css'); ?>">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('<?= base_url("assets/images/bg-01.jpg"); ?>') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Almarai', sans-serif;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* لضبط المحتوى بشكل عمودي في منتصف الصفحة */
+        }
+
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-body {
+            padding: 10px;
+           
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-body img {
+            width: auto;
+            height: auto;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card-body img:hover {
+            transform: scale(1.2);
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .form-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+        }
+
+        .text-muted {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 767px) {
+            .card {
+                width: 90%;
             }
 
-            .gmap_canvas {
-                overflow: hidden;
-                background: none !important;
-                height: 100%;
-                width: 100%;
+            .card-body {
+                padding: 20px;
             }
+        }
+		
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px; /* إضافة بعض المسافة من الأسفل */
+        }
 
-            .account-pages {
-                padding-top: 50px;
-            }
-
-            .mt-5,
-            .my-5 {
-                margin-top: 0px !important;
-            }
-
-            .outer {
-                position: absolute;
-                top: 0px;
-                left: 0px;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.55);
-            }
-	</style>		
-<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    var viewportWidth = document.documentElement.clientWidth;
-    if (viewportWidth <= 1024) {
-        document.documentElement.style.fontSize = "80%";
-    } else if (viewportWidth <= 1280) {
-        document.documentElement.style.fontSize = "90%";
-    } else {
-        document.documentElement.style.fontSize = "100%";
-    }
-});
-</script>		 
+        .logo {
+            max-width: 100%;
+            height: auto;
+        }
+    </style> 
 </head>
-<body class="authentication-bg">
-<div class="mapouter" style="position: absolute; z-index: 0;">
-    <div class="gmap_canvas">
-        <iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=qatar&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-    </div>
-</div>
-        <div class="account-pages my-5  pt-sm-5">
-            <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-8 col-lg-6 col-xl-5">
-                        <div class="card">
 
-                            <div class="card-body p-4">
-                                <div class="text-center mt-2">
-                                    <img src="<?= base_url(); ?>assets/images/qlick-health-logo.png" alt="" width="100%" class="logo logo-dark">
+<body>
+    <div class="account-pages my-5 pt-sm-5">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="logo-container">
+                                <img src="<?= base_url('assets/images/defaulticon.png'); ?>" alt="Wellbeing Scales" class="logo logo-dark">
+                            </div>
+                            <div class="text-center mt-2">
+                                <div class="alert alert-primary alert-dismissible fade show" id="statusbox" role="alert">
+                                    Welcome to Wellbeing Scales
+                                </div>
+                            </div>
 
-                                    <div class="alert alert-primary alert-dismissible fade show" id="statusbox" role="alert">
-                                        Sign in to continue to QlickHealth
+                            <div class="p-2 mt-4">
+                                <form id="loginform">
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
                                     </div>
 
-                                    
-                                    <?php $this->load->view("EN/widgets/date-time.php", ["center" => true]); ?>
-                                    <p class="text-muted">Welcome!</p>
-                                </div>
-                                <div class="p-2 mt-4">
-                                    <form action="" id="loginform">
+                                    <div class="form-group">
+                                        <label for="userpassword">Password</label>
+                                        <input type="password" class="form-control" id="userpassword" placeholder="Password" name="password" required>
+                                    </div>
 
-                                        <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Username" name="username">
+                                    <div class="mt-3 text-right">
+                                        <button class="btn btn-primary btn-lg btn-block waves-effect waves-light mb-2" type="submit">Login</button>
+                                        <div class="float-left">
+                                            <a href="<?= base_url('EN/Users/ForgetPassword'); ?>" class="text-muted">
+                                                <p class="text-muted"><span style="color: #0eacd8; font-weight: bold;">Forgot Password?</span></p>
+                                            </a>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label for="userpassword">Password</label>
-                                            <input type="password" class="form-control" id="userpassword" placeholder="Password" name="password">
-                                        </div>
-
-                                        <div class="mt-3 text-right">
-                                            <button class="btn btn-primary btn-lg btn-block waves-effect waves-light mb-2" type="Submit"> Login </button>
-                                            <div class="float-left">
-                                                <a href="<?= base_url() ?>EN/Users/ForgetPassword" class="text-muted">
-                                                   <p class="text-muted"><span style="color: #0eacd8; font-weight: bold;">Forgot Password?</span>.</p>
-													
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                    </form>
-									
-                                </div>
-
-								<div class="card-body p-4">
-									<hr>
-              <p class="text-muted">Thank you for choosing <span style="color: #0eacd8; font-weight: bold;">QlickHealth</span>. We are confident that you will find our platform an essential tool for managing your business and wellness.</p>
-			  <p class="text-muted">Your data is safe with us. We will never share or sell your personal information to third parties. <br><a href="<?=base_url('assets/policy/privacy-policy.html')?>"><span style="color: #0eacd8; font-weight: bold;">Privacy Policy Statement</span></a>.</p>
-            </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
-                        <div class="mt-5 text-center">
-                            <p>© 2023 qlickHealth</p>
+                        <div class="text-center mt-2">
+                            <hr>
+                            <p>Copyright © <span id="currentYear"></span> Wellbeing Scales. All rights reserved.</p>
                         </div>
                     </div>
                 </div>
-                <!-- end row -->
             </div>
-            <!-- end container -->
         </div>
-    
-    <script src="<?= base_url() ?>/assets/js/jquery-3.3.1.min.js"></script>
+    </div>
+
     <script>
         $("#loginform").on('submit', function(e) {
             e.preventDefault();
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url(); ?>index.php/EN/Users/startlogin',
+                url: '<?= base_url('index.php/EN/Users/startlogin'); ?>',
                 data: new FormData(this),
                 contentType: false,
                 cache: false,
@@ -158,14 +201,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 },
                 success: function(data) {
                     $('#statusbox').html(data);
-
                 },
-                ajaxError: function() {
-                    $('.alert.alert-info').css('background-color', '#DB0404');
-                    $('.alert.alert-info').html("Ooops! Error was found.");
+                error: function() {
+                    $('#statusbox').html('<p style="color: red;">Ooops! Error was found.</p>');
                 }
             });
         });
+
+        // Set current year for the footer copyright
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
