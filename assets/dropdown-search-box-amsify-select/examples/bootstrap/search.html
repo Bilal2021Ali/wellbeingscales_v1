@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amsifyselect.js: Custom Dropdown With Search Box Examples</title>
+
+<!-- CDN links -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/lumen/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="../../css/amsify.select.css">
+
+<!-- Amsify Plugin -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script type="text/javascript" src="../../js/jquery.amsifyselect.js"></script>
+<style>
+	body { background: #eee; }
+	</style>
+</head>
+<body>
+
+<div class="container">
+	<h1 class="text-center">Amsifyselect.js: Custom Dropdown With Search Box Examples</h1>
+		<div class="form-group">
+			<h4>Selection - Search</h4>
+			<select class="form-control" name="country" searchable>
+				<option value="">Select Country</option>
+				<option value="1">India</option>
+				<option value="2">Afghanistan</option>
+				<option value="4">USA</option>
+				<option value="5">Russia</option>
+				<option value="6">South Africa</option>
+				<option value="7">West Indies</option>
+
+				<option value="11">India 1</option>
+				<option value="21">Afghanistan 1</option>
+				<option value="41">USA 1</option>
+				<option value="51">Russia 1</option>
+				<option value="61">South Africa 1</option>
+				<option value="71">West Indies 1</option>
+
+				<option value="12">India 2</option>
+				<option value="22">Afghanistan 2</option>
+				<option value="42">USA 2</option>
+				<option value="52">Russia 2</option>
+				<option value="62">South Africa 2</option>
+				<option value="72">West Indies 2</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<h4>Selection [Multiple] - Search</h4>
+			<select class="form-control" name="colors"  multiple="multiple" searchable>
+				<option value="">Select Color</option>
+				<option value="Black">Black</option>
+				<option value="White">White</option>
+				<option value="Red">Red</option>
+				<option value="Orange">Orange</option>
+				<option value="Blue">Blue</option>
+				<option value="Green">Green</option>
+
+				<option value="Black1">Black1</option>
+				<option value="White1">White1</option>
+				<option value="Red1">Red1</option>
+				<option value="Orange1">Orange1</option>
+				<option value="Blue">Blue</option>
+				<option value="Green1">Green1</option>
+
+				<option value="Black2">Black2</option>
+				<option value="White2">White2</option>
+				<option value="Red2">Red2</option>
+				<option value="Orange2">Orange2</option>
+				<option value="Blue2">Blue2</option>
+				<option value="Green2">Green2</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<h4>Selection [optgroup][Multiple] - Search</h4>
+			<select class="form-control" name="country" multiple="multiple" searchable>
+				<option value="">Select Country</option>
+				<optgroup label="Asia">
+					<option value="1">India</option>
+					<option value="2">Afghanistan</option>
+					<option value="3">Bangladesh</option>
+					<option value="4">Nepal</option>
+					<option value="5">Sri Lanka</option>
+				</optgroup>
+				<optgroup label="America">
+					<option value="6">USA</option>
+					<option value="7">Canada</option>
+					<option value="8">West Indies</option>
+					<option value="9">Chile</option>
+					<option value="10">Argentina</option>
+				</optgroup>
+				<optgroup label="Africa">
+					<option value="11">South Africa</option>
+					<option value="12">Nigeria</option>
+					<option value="13">Algeria</option>
+					<option value="14">Somalia</option>
+					<option value="15">Sudan</option>
+				</optgroup>
+			</select>
+		</div>
+</div>
+<!-- -->
+<script type="text/javascript">
+	$('select').amsifySelect({
+		classes: {
+				clear : 'btn btn-danger',
+				close : 'btn btn-primary'
+			}
+	});
+</script>
+</body>
+</html>

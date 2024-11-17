@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+html{
+     overflow-x: hidden;
+}
+
+
+#leftsidebar{
+    display: block;
+    left: 0px;     
+}
+
+#Toggle{
+     display: none;
+}     
+
+.schools_list {
+	width: 100%;
+	padding: 24px;
+}
+
+
+@media (max-width: 1170px) {
+
+#leftsidebar{
+     left: -300px;
+}
+     
+#Toggle{
+     display: block;
+}     
+   
+     .navbar-brand img{
+          width: 120px !important;
+     }     
+
+     .content {
+          margin-left: 0px;
+     }  
+     
+     .table{
+          display: block;
+     }     
+     
+     
+}
+
+
+.sidbar_active{
+     left: 0px !important;
+     transition-duration: 1s;
+}
